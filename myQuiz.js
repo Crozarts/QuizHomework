@@ -35,6 +35,13 @@ let questions = [
     }
 ];
 // create some variables
+
+const lastQuestion = questions.length - 1;
+let runningQuestion = 0;
+let count = 0;
+let score = 0;
+
+start.addEventListener("click", startQuiz);
 // start of quiz
 // render question
 // check Answer
