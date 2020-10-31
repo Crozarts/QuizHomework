@@ -70,6 +70,11 @@ function checkAnswer(answer){
         runningQuestion++;
         renderQuestion();
     }else{
+            // end the quiz and show the score
+            scoreRender();
+        }
+    }
+        
 // score tally
 // calculate total score percentage
 // select image based on user score
