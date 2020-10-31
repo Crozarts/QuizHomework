@@ -59,8 +59,17 @@ function renderQuestion(){
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
 }
-
 // check Answer
+function checkAnswer(answer){
+    if( answer == questions[runningQuestion].correct){
+        // answer is correct
+        score++;
+    }
+    count = 0;
+    if(runningQuestion < lastQuestion){
+        runningQuestion++;
+        renderQuestion();
+    }else{
 // score tally
 // calculate total score percentage
 // select image based on user score
