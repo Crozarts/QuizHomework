@@ -43,6 +43,12 @@ let score = 0;
 
 start.addEventListener("click", startQuiz);
 // start of quiz
+function startQuiz(){
+    start.style.display = "none";
+    renderQuestion();
+    quiz.style.display = "block";
+}
+
 // render question
 // check Answer
 // score tally
