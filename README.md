@@ -6,9 +6,6 @@ this week’s homework was to build a timed coding quiz with multiple-choice que
 
 # Links
 
-```
-    https://crozarts.github.io/QuizHomework/
+[Deployed Link](https://crozarts.github.io/QuizHomework/)
 
-    https://github.com/Crozarts/QuizHomework/
-
-```
+[GitHub Link](https://github.com/Crozarts/QuizHomework/)   
