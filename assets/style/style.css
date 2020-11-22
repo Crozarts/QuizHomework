@@ -96,3 +96,9 @@ body{
     font-weight: bold;
     text-align: center;
 }
+
+
+#timer {
+    padding:5px;
+    color: red;
+}
