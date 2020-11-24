@@ -51,7 +51,7 @@ function startQuiz() {
         001 + ":" + 01;
     startTimer();
 }
-
+//  timer
 function startTimer() {
     var presentTime = document.getElementById('timer').innerHTML;
     var timeArray = presentTime.split(/[:]+/);
@@ -89,11 +89,12 @@ function checkAnswer(answer) {
     if (runningQuestion < lastQuestion) {
         runningQuestion++;
         renderQuestion();
-    } else {
-        // end the quiz and show the score
+    }else {
+        timeArray = 0;
         scoreRender();
     }
 }
+
 // score render
 function scoreRender() {
     scoreDiv.style.display = "block";
