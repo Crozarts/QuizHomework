@@ -6,6 +6,9 @@ const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
 const scoreDiv = document.getElementById("scoreReport");
+
+var myTimer;
+
 // create questions
 let questions = [
     {
@@ -57,12 +60,19 @@ function startTimer() {
     var timeArray = presentTime.split(/[:]+/);
     var m = timeArray[0];
     var s = checkSecond((timeArray[1] - 1));
+    var status = false;
     if (s == 59) { m = m - 1 }
     document.getElementById('timer').innerHTML =
         m + ":" + s;
-    console.log(m)
-    setTimeout(startTimer, 1000);
+
+    if (m != 0 || s != 0)
+        myTimer = setTimeout(startTimer, 1000);
+    else {
+        // else scorerender false when timer ends, render 0
+        scoreRender(status);
+    }
 }
+
 function checkSecond(sec) {
     if (sec < 10 && sec >= 0) { sec = "0" + sec };
     if (sec < 0) { sec = "59" };
@@ -81,6 +91,7 @@ function renderQuestion() {
 }
 // check Answer
 function checkAnswer(answer) {
+    var status = true;
     if (answer == questions[runningQuestion].correct) {
         // answer is correct
         score++;
@@ -89,26 +100,34 @@ function checkAnswer(answer) {
     if (runningQuestion < lastQuestion) {
         runningQuestion++;
         renderQuestion();
-    }else {
-        timeArray = 0;
-        scoreRender();
+    }
+    else {
+        // scorerender = true move onto scoreRender
+        scoreRender(status);
     }
 }
 
 // score render
-function scoreRender() {
+function scoreRender(status) {
     scoreDiv.style.display = "block";
-
+    // img defaults to 0 
+    var img = "assets/img/1.png";
 
     // calculate the amount of question percent answered by the user
-    const scorePerCent = Math.round(100 * score / questions.length);
+    var scorePerCent = Math.round(100 * score / questions.length);
 
-    // choose the image based on the scorePerCent
-    let img = (scorePerCent >= 80) ? "assets/img/5.png" :
-        (scorePerCent >= 60) ? "assets/img/4.png" :
-            (scorePerCent >= 40) ? "assets/img/3.png" :
-                (scorePerCent >= 20) ? "assets/img/2.png" :
-                    "img/1.png";
+    if (status) {
+        // choose the image based on the scorePerCent
+        img = (scorePerCent >= 80) ? "assets/img/5.png" :
+            (scorePerCent >= 60) ? "assets/img/4.png" :
+                (scorePerCent >= 40) ? "assets/img/3.png" :
+                    (scorePerCent >= 20) ? "assets/img/2.png" :
+                        "assets/img/1.png";
+        clearTimeout(myTimer);
+    } else {
+        img = "assets/img/1.png";
+        scorePerCent = 0;
+    }
 
     scoreDiv.innerHTML = "<img src=" + img + ">";
     scoreDiv.innerHTML += "<p>" + scorePerCent + "%</p>";
